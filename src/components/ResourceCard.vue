@@ -1,31 +1,21 @@
 <template>
-    <li class="resource__card">
-        <div class="resource__div">
-            <h2 class="resource__title"> {{ title }} </h2>
-            <button @click="deleteResource(id)" class="resource__button">Delete</button>
-        </div>
-        <p class="resource__desc"> {{ description }} </p>
-        <a :href=link class="resource__link" target="_blank">View Resource</a>
-    </li>
+    <ul class="resource">
+        <li class="resource__card" v-for="resource in storedResources" :key="resource.id">
+            <div class="resource__div">
+                <h2 class="resource__title"> {{ resource.title }} </h2>
+                <button @click="deleteResource(resource.id)" class="resource__button">Delete</button>
+            </div>
+            <p class="resource__desc"> {{ resource.description }} </p>
+            <a :href=resource.link class="resource__link" target="_blank">View Resource</a>
+        </li>
+    </ul>
 </template>
 
 <script>
 export default {
     props: {
-        title: {
-            type: String,
-            required: true
-        },
-        description: {
-            type: String,
-            required: true
-        },
-        link: {
-            type: String,
-            required: true
-        },
-        id: {
-            type: String,
+        storedResources: {
+            type: Array,
             required: true
         }
     },
@@ -48,6 +38,10 @@ export default {
 </script>
 
 <style scoped>
+.resource {
+    padding: 2rem;
+    margin: 0;
+}
 .resource__div {
     display: flex;
     justify-content: space-between;

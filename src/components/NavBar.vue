@@ -1,15 +1,35 @@
 <template>
     <nav>
         <ul class="nav__list">
-            <li class="nav__item nav__item--active">Stored Resources</li>
-            <li class="nav__item">Add Resource</li>
+            <li :class="activeNav === 'ResourceCard'? 'nav__item nav__item--active' : 'nav__item'" @click="setNav('ResourceCard')">Stored Resources</li>
+            <li :class="activeNav === 'AddResource'? 'nav__item nav__item--active' : 'nav__item'" @click="setNav('AddResource')">Add Resource</li>
         </ul>
     </nav>
 </template>
 
 <script>
 export default {
-
+    emits: {
+        'nav-bar': function(nav) {
+            if(nav) {
+                return true
+            } else {
+                console.log('nav selection missing')
+                return false
+            }
+        }
+    },
+    data(){
+        return {
+            activeNav: 'ResourceCard'
+        }
+    },
+    methods: {
+        setNav(nav){
+            this.$emit('nav-bar', nav)
+            this.activeNav = nav
+        }
+    }
 }
 </script>
 
@@ -27,6 +47,7 @@ export default {
         margin-right: 1rem;
         color: purple;
         border-radius: 5px;
+        cursor: pointer;
     }
     .nav__item--active {
         background-color: purple;

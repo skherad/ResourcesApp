@@ -1,11 +1,9 @@
 <template>
     <TheHeader />
-    <NavBar />
-    <ul class="resource">
-        <ResourceCard v-for="resource in storedResources" :key="resource.id" :id="resource.id" :title="resource.title"
-            :description="resource.description" :link="resource.link" @delete-resource="removeResource" />
-    </ul>
-    <AddResource />
+    <NavBar @nav-bar="setNav"/>
+    <!-- <ResourceCard :stored-resources="storedResources" /> -->
+    <!-- <AddResource /> -->
+    <component :is="selectedNav" :stored-resources="storedResources"></component>
 </template>
 
 <script>
@@ -23,6 +21,7 @@ export default {
     },
     data() {
         return {
+            selectedNav: 'ResourceCard',
             storedResources: [
                 {
                     id: '1',
@@ -43,6 +42,10 @@ export default {
         removeResource(id) {
             let selectedResource = this.storedResources.filter(e => e.id === id)
             console.log('remove ', selectedResource)
+        },
+        setNav(nav) {
+            this.selectedNav = nav
+            console.log(nav)
         }
     }
 }
@@ -58,11 +61,6 @@ export default {
 body {
     font-family: 'Open Sans';
     font-weight: 400;
-    margin: 0;
-}
-
-.resource {
-    padding: 2rem;
     margin: 0;
 }
 </style>
