@@ -30,8 +30,8 @@ export default {
         }
     },
     methods: {
-        deleteResource(){
-            this.$emit('delete-resource', this.id)
+        deleteResource(id){
+            this.$emit('delete-resource', id)
         }
     }
 }

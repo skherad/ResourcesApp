@@ -1,9 +1,11 @@
 <template>
     <TheHeader />
     <NavBar @nav-bar="setNav"/>
-    <!-- <ResourceCard :stored-resources="storedResources" /> -->
-    <!-- <AddResource /> -->
-    <component :is="selectedNav" :stored-resources="storedResources"></component>
+    <component 
+        :is="selectedNav" 
+        :stored-resources="storedResources"
+        @delete-resource="removeResource"
+        ></component>
 </template>
 
 <script>
@@ -40,12 +42,10 @@ export default {
     },
     methods: {
         removeResource(id) {
-            let selectedResource = this.storedResources.filter(e => e.id === id)
-            console.log('remove ', selectedResource)
+            this.storedResources = this.storedResources.filter(e=>e.id!==id)
         },
         setNav(nav) {
             this.selectedNav = nav
-            console.log(nav)
         }
     }
 }
