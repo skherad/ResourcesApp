@@ -5,6 +5,7 @@
         :is="selectedNav" 
         :stored-resources="storedResources"
         @delete-resource="removeResource"
+        @add-resource="AddNewResource"
         ></component>
 </template>
 
@@ -46,6 +47,10 @@ export default {
         },
         setNav(nav) {
             this.selectedNav = nav
+        },
+        AddNewResource(obj){
+            let newResource = {id:this.storedResources.length+1, ...obj}
+            this.storedResources.unshift(newResource)
         }
     }
 }

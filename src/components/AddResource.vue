@@ -1,14 +1,47 @@
 <template>
-    <form class="form">
+    <form class="form" @submit.prevent="addResource">
         <label class="form__label">Title</label>
-        <input class="form__input"/>
+        <input class="form__input" v-model="title"/>
         <label class="form__label">Description</label>
-        <textarea class="form__text"></textarea>
+        <textarea class="form__text" v-model="desc"></textarea>
         <label class="form__label">Link</label>
-        <input class="form__input"/>
+        <input class="form__input" v-model="url"/>
         <button class="form__button">Add Resource</button>
     </form>
 </template>
+
+<script>
+export default {
+    emits: {
+        'add-resource': function(obj) {
+            if(obj) {
+                return true
+            } else {
+                console.log('new resource object missing')
+                return false
+            }
+        }
+    },
+    data(){
+        return {
+            title: '',
+            desc: '',
+            url: ''
+        }
+    },
+    methods: {
+        addResource(){
+            let newResource = {
+                title: this.title,
+                description: this.desc,
+                link: this.url
+            }
+            this.$emit('add-resource', newResource)
+            event.target.reset();
+        }
+    }
+}
+</script>
 
 <style>
 .form {
@@ -43,5 +76,6 @@
     border: none;
     border-radius: 5px;
     margin-top: 1rem;
+    cursor: pointer;
 }
 </style>
