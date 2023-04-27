@@ -1,9 +1,11 @@
 <template>
     <li class="resource__card">
-        <h2 class="resource__title"> {{ title }} </h2>
+        <div class="resource__div">
+            <h2 class="resource__title"> {{ title }} </h2>
+            <button @click="deleteResource(id)" class="resource__button">Delete</button>
+        </div>
         <p class="resource__desc"> {{ description }} </p>
         <a :href=link class="resource__link">View Resource</a>
-        <button @click="deleteResource(id)">Delete</button>
     </li>
 </template>
 
@@ -44,3 +46,33 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.resource__div {
+    display: flex;
+    justify-content: space-between;
+}
+.resource__card {
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 2rem 1rem;
+        list-style-type: none;
+        width: 100%;
+        margin-bottom: 2rem;
+}
+.resource__title {
+    margin: 0;
+}
+.resource__button {
+    border: none;
+    padding: 0;
+    margin-right: 2rem;
+    background: none;
+    cursor: pointer;
+    color: purple;
+}
+.resource__link {
+    text-decoration: none;
+    color: orangered;
+}
+</style>

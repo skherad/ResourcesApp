@@ -1,7 +1,8 @@
 <template>
     <TheHeader />
-    <ul v-for="resource in storedResources" :key="resource.id">
-        <ResourceCard :id="resource.id" :title="resource.title" :description="resource.description" :link="resource.link" @delete-resource="removeResource"/>
+    <ul class="resource">
+        <ResourceCard v-for="resource in storedResources" :key="resource.id" :id="resource.id" :title="resource.title"
+            :description="resource.description" :link="resource.link" @delete-resource="removeResource" />
     </ul>
 </template>
 
@@ -14,7 +15,7 @@ export default {
         TheHeader,
         ResourceCard,
     },
-    data(){
+    data() {
         return {
             storedResources: [
                 {
@@ -34,7 +35,7 @@ export default {
     },
     methods: {
         removeResource(id) {
-            let selectedResource = this.storedResources.filter(e=>e.id===id)
+            let selectedResource = this.storedResources.filter(e => e.id === id)
             console.log('remove ', selectedResource)
         }
     }
@@ -42,12 +43,18 @@ export default {
 </script>
 
 <style>
-*, *::before, *::after{
-	box-sizing: border-box;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
+
 body {
     font-family: 'Open Sans';
     font-weight: 400;
     margin: 0;
 }
-</style>
+
+.resource {
+    padding: 2rem;
+}</style>
