@@ -5,7 +5,7 @@
             <button @click="deleteResource(id)" class="resource__button">Delete</button>
         </div>
         <p class="resource__desc"> {{ description }} </p>
-        <a :href=link class="resource__link">View Resource</a>
+        <a :href=link class="resource__link" target="_blank">View Resource</a>
     </li>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
     <TheHeader />
+    <NavBar />
     <ul class="resource">
         <ResourceCard v-for="resource in storedResources" :key="resource.id" :id="resource.id" :title="resource.title"
             :description="resource.description" :link="resource.link" @delete-resource="removeResource" />
@@ -9,11 +10,13 @@
 <script>
 import TheHeader from './components/TheHeader.vue'
 import ResourceCard from './components/ResourceCard.vue'
+import NavBar from './components/NavBar.vue'
 
 export default {
     components: {
         TheHeader,
         ResourceCard,
+        NavBar
     },
     data() {
         return {
@@ -57,4 +60,5 @@ body {
 
 .resource {
     padding: 2rem;
+    margin: 0;
 }</style>
