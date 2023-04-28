@@ -4,7 +4,7 @@
 
 <style scoped>
 .header {
-    background-color: #800000;
+    background-color: #4d033f;
     color: #ffff;
     padding: 1rem;
     margin: 0;

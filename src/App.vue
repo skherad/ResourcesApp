@@ -1,6 +1,7 @@
 <template>
     <TheHeader />
     <NavBar @nav-bar="setNav"/>
+    <!-- dynamic component selection -->
     <component 
         :is="selectedNav" 
         :stored-resources="storedResources"
@@ -36,7 +37,7 @@ export default {
                     id: '2',
                     title: 'Google',
                     description: 'Learn to google...',
-                    link: 'https://vuejs.org/guide/introduction.html'
+                    link: 'https://google.ca'
                 },
             ]
         }
